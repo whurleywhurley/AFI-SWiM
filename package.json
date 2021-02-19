@@ -1,6 +1,6 @@
 {
-  "name": "SWM",
-  "productName": "SWM",
+  "name": "swm",
+  "productName": "swm",
   "description": "My Electron application description",
   "keywords": [],
   "main": "./main.js",
@@ -15,5 +15,15 @@
   },
   "devDependencies": {
     "electron": "11.1.1"
+  },
+  "build": {
+    "productName": "SWM",
+    "appId": "scripter.swm",
+    "win": {
+        "target": ["portable"]
+    },
+    "portable": {
+        "artifactName": "swm.exe"
+    }
   }
 }
