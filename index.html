@@ -12,13 +12,9 @@
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
 
-    <input class="upload" type="file" id="Filedata" capture="" name="Filedata" multiple="" onchange="update()" accept="application/pdf">
-       <script type="text/javascript" charset="utf-8">
-         document.getElementById('Filedata').ondragstart = (event) => {
-         event.preventDefault()
-         ipcRenderer.send('ondragstart', '/path/to/item')
-       }
-       </script>
+    <br><br> 
+    <h3>Drag and Drop Files in the Window.</h3> 
+
 <script src="renderer.js"></script>
 
 

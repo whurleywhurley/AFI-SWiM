@@ -1,7 +1,7 @@
 {
-  "name": "shall-will-must",
-  "productName": "Shall Will Must",
-  "description": "Find shall, will and must in AFI's",
+  "name": "SWM",
+  "productName": "SWM",
+  "description": "My Electron application description",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
@@ -9,10 +9,11 @@
   "scripts": {
     "start": "electron ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "pdf-parse": "*",
+    "exceljs": "*"
+  },
   "devDependencies": {
-    "electron": "11.1.1",
-    "pdf-parser": "1.0.5",
-    "exceljs": "4.2.0"
+    "electron": "11.1.1"
   }
 }

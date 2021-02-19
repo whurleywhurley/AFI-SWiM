@@ -1,12 +1,8 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
-const { ipcMain } = require('electron')
-ipcMain.on('ondragstart', (event, filePath) => {
-  event.sender.startDrag({
-    file: filePath,
-    icon: '/path/to/icon.jpg'
-  })
-})
+const {app, BrowserWindow, ipcMain, dialog} = require('electron')
+const fs = require("fs");
+const pdf = require('pdf-parse');
+const Excel = require('exceljs');
 
 function createWindow () {
   // Create the browser window.
@@ -22,7 +18,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -34,9 +30,7 @@ app.whenReady().then(createWindow)
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
     app.quit()
-  }
 })
 
 app.on('activate', function () {
@@ -49,3 +43,50 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+function convertAFI(dataBuffer) {
+  console.log("Converting AFI to Excel...")
+  pdf(dataBuffer).then(function (data) {
+      result = data.text.replace(/\n[^\d+\.]/g, '')
+      result = result.split(/(\d\..*)\s/)
+
+      var filtered = result.filter(function (el) {
+          return el != '';
+        });
+
+      const workbook = new Excel.Workbook();
+      const worksheet = workbook.addWorksheet("My Sheet");
+
+      worksheet.columns = [
+      {header: 'Description', key: 'description', width: 70},
+      {header: 'ShallWillMust', key: 'shallwillmust', width: 30}
+      ];
+      
+      worksheet.getColumn(1).values = filtered;
+      worksheet.getColumn(1).alignment = { wrapText: true };
+
+      const shallwillmust = worksheet.getColumn(2);
+      shallwillmust.eachCell(function(cell, rowNumber) {
+          cell.value = { formula:
+          '=CONCATENATE(IF(IFERROR(FIND(" must ",A' + rowNumber 
+          + '),0)>0,"Must",""),IF(IFERROR(FIND(" will ",A' + rowNumber
+          + '),0)>0,"Will",""),IF(IFERROR(FIND(" shall ",A' + rowNumber
+          + '),0)>0,"Shall",""))'
+          }
+      });
+
+      worksheet.insertRow(1, ['Description', 'Shall/Will/Must']);
+      worksheet.views = [
+          {state: 'frozen', xSplit: 0, ySplit: 1}
+        ];
+
+      const savePath = dialog.showSaveDialog(null);
+
+      workbook.xlsx.writeFile(savePath + 'export.xlsx').then(() => {
+          callback(null)
+      });
+  });
+}
+
+ipcMain.on('upload', (event, arg) => {
+  convertAFI(arg)
+});
