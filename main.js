@@ -1,5 +1,12 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+const { ipcMain } = require('electron')
+ipcMain.on('ondragstart', (event, filePath) => {
+  event.sender.startDrag({
+    file: filePath,
+    icon: '/path/to/icon.jpg'
+  })
+})
 
 function createWindow () {
   // Create the browser window.
