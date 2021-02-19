@@ -12,6 +12,7 @@ document.addEventListener('drop', (event) => {
         // Using the path attribute to get absolute file path 
         console.log('File Path of dragged files: ', f.path)
         ipcRenderer.send('upload', f.path);
+        document.getElementById("status").innerHTML = "Converting..."
       } 
 }); 
   
