@@ -46,30 +46,37 @@ function convertAFI(status, dataBuffer) {
       });
   })
   .then(result => {
+    // Create our worksheet and set it up
     const workbook = new excel.Workbook();
-    const worksheet = workbook.addWorksheet("My Sheet");
-
+    const worksheet = workbook.addWorksheet("AFI Export");
     worksheet.columns = [
     {header: 'Description', key: 'description', width: 70},
-    {header: 'ShallWillMust', key: 'shallwillmust', width: 30}
+    {header: 'Shall/Will/Must', key: 'shallwillmust', width: 30}
     ];
-    
-    worksheet.insertRow(1, ['Description', 'Shall/Will/Must']);
-    worksheet.views = [{state: 'frozen', xSplit: 0, ySplit: 1}];
 
+    // Set up the description column from the PDF export
     worksheet.getColumn(1).values = result;
     worksheet.getColumn(1).alignment = { wrapText: true };
 
+    // Set up the SWM column by iterating over the rows, and then create the filter
     const shallwillmust = worksheet.getColumn(2);
     shallwillmust.eachCell(function(cell, rowNumber) {
         cell.value = { formula:
         '=CONCATENATE(IF(IFERROR(FIND(" must ",A' + rowNumber 
-        + '),0)>0,"Must",""),IF(IFERROR(FIND(" will ",A' + rowNumber
+        + '),0)>0,"Shall",""),IF(IFERROR(FIND(" will ",A' + rowNumber
         + '),0)>0,"Will",""),IF(IFERROR(FIND(" shall ",A' + rowNumber
-        + '),0)>0,"Shall",""))'
+        + '),0)>0,"Must",""))'
         }
     });
 
+    // Insert the header row,, style, then freeze it
+    worksheet.getColumn('description').header = "Description"
+    worksheet.getColumn('shallwillmust').header = "Shall/Will/Must"
+    worksheet.getRow(1).font = {bold: true};
+    worksheet.views = [{state: 'frozen', xSplit: 0, ySplit: 1}];
+    worksheet.autoFilter = 'B1:B1';
+
+    // return the workbook
     return workbook;
   })
   .then(workbook =>{
