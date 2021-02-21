@@ -13,7 +13,11 @@ document.addEventListener('drop', (event) => {
         console.log('File Path of dragged files: ', f.path)
         ipcRenderer.send('upload', f.path);
         document.getElementById("status").innerHTML = "Converting..."
-      } 
+        ipcRenderer.on('upload-reply', (event, arg) => {
+            if (arg === 'Done') document.getElementById("status").innerHTML = "Done"
+            if (arg === 'Reset') document.getElementById("status").innerHTML = "Drag AFI PDF Here"
+        });
+    } 
 }); 
   
 document.addEventListener('dragover', (e) => { 
