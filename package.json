@@ -1,7 +1,7 @@
 {
-  "name": "swm",
-  "productName": "swm",
-  "description": "My Electron application description",
+  "name": "shall-will-must",
+  "productName": "Shall/Will/Must",
+  "description": "Produce a SAP Excel checklist from an AFI by redacting shall, will, and must",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
