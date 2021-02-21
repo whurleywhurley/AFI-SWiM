@@ -4,7 +4,7 @@
   "description": "Produce a SAP Excel checklist from an AFI by redacting shall, will, and must",
   "keywords": [],
   "main": "./main.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "williamwalker",
   "scripts": {
     "start": "electron ."

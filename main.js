@@ -62,9 +62,9 @@ function convertAFI(status, dataBuffer) {
     const shallwillmust = worksheet.getColumn(2);
     shallwillmust.eachCell(function(cell, rowNumber) {
         cell.value = { formula:
-        '=CONCATENATE(IF(IFERROR(FIND(" must ",A' + rowNumber 
+        '=CONCATENATE(IF(IFERROR(FIND(" shall ",A' + rowNumber 
         + '),0)>0,"Shall",""),IF(IFERROR(FIND(" will ",A' + rowNumber
-        + '),0)>0,"Will",""),IF(IFERROR(FIND(" shall ",A' + rowNumber
+        + '),0)>0,"Will",""),IF(IFERROR(FIND(" must ",A' + rowNumber
         + '),0)>0,"Must",""))'
         }
     });
