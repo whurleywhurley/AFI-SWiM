@@ -14,7 +14,6 @@
     "start": "electron ."
   },
   "dependencies": {
-    "electron-builder-squirrel-windows": "^22.10.5",
     "exceljs": "*",
     "pdf-parse": "*"
   },
