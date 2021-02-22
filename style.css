@@ -1,6 +1,8 @@
 body{
     padding: 15%;
     background-color: #f4f9f9;
+    overflow-y: hidden;
+    overflow-x: hidden
 }
 
 #status {

@@ -1,10 +1,10 @@
 {
-  "name": "shall-will-must",
-  "productName": "Shall/Will/Must",
-  "description": "Produce a SAP Excel checklist from an AFI by redacting shall, will, and must",
+  "name": "afiswm",
+  "productName": "AFISWM",
+  "description": "Produce an Excel workbook from an AFI by extracting shall, will, and must",
   "keywords": [],
   "main": "./main.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "williamwalker",
   "scripts": {
     "start": "electron ."
@@ -14,16 +14,18 @@
     "exceljs": "*"
   },
   "devDependencies": {
-    "electron": "11.1.1"
+    "electron": "^11.3.0"
   },
   "build": {
-    "productName": "SWM",
-    "appId": "scripter.swm",
+    "productName": "AFISWM",
+    "appId": "scripter.AFISWM",
     "win": {
-        "target": ["portable"]
+      "target": [
+        "portable"
+      ]
     },
     "portable": {
-        "artifactName": "swm.exe"
+      "artifactName": "AFISWM.exe"
     }
   }
 }

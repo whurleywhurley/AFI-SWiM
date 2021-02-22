@@ -18,7 +18,10 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // don't allow the window to be resized
+  // and remove the menu
   mainWindow.setResizable(false)
+  mainWindow.removeMenu()
+
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()

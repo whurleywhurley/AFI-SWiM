@@ -1,21 +1,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/willswire/shall-will-must">
+  <a href="https://github.com/willswire/AFISWM">
     <img src="upload.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Shall/Will/Must</h3>
+  <h3 align="center">SAFISWM</h3>
 
   <p align="center">
-    Produce a SAP Excel checklist from an AFI by redacting shall, will, and must
+    Produce an Excel workbook from an AFI by extracting shall, will, and must
     <br />
-    <a href="https://github.com/willswire/shall-will-must/releases"><strong>Download »</strong></a>
+    <a href="https://github.com/willswire/AFISWM/releases"><strong>Download »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/willswire/shall-will-must/issues">Report Bug</a>
+    <a href="https://github.com/willswire/AFISWM/issues">Report Bug</a>
     ·
-    <a href="https://github.com/willswire/shall-will-must/issues">Request Feature</a>
+    <a href="https://github.com/willswire/AFISWM/issues">Request Feature</a>
   </p>
 </p>
 
