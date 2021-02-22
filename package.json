@@ -1,10 +1,10 @@
 {
-  "name": "afiswm",
-  "productName": "AFISWM",
+  "name": "afi-swim",
+  "productName": "AFI SWiM",
   "description": "Produce an Excel workbook from an AFI by extracting shall, will, and must",
   "keywords": [],
   "main": "./main.js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "williamwalker",
   "scripts": {
     "start": "electron ."
@@ -17,15 +17,15 @@
     "electron": "^11.3.0"
   },
   "build": {
-    "productName": "AFISWM",
-    "appId": "scripter.AFISWM",
+    "productName": "AFI SWiM",
+    "appId": "scripter.afi-swim",
     "win": {
       "target": [
         "portable"
       ]
     },
     "portable": {
-      "artifactName": "AFISWM.exe"
+      "artifactName": "AFI SWiM.exe"
     }
   }
 }

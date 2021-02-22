@@ -1,21 +1,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/willswire/AFISWM">
+  <a href="https://github.com/willswire/AFI-SWiM">
     <img src="upload.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">SAFISWM</h3>
+  <h3 align="center">AFI SWiM</h3>
 
   <p align="center">
     Produce an Excel workbook from an AFI by extracting shall, will, and must
     <br />
-    <a href="https://github.com/willswire/AFISWM/releases"><strong>Download »</strong></a>
+    <a href="https://github.com/willswire/AFI-SWiM/releases"><strong>Download »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/willswire/AFISWM/issues">Report Bug</a>
+    <a href="https://github.com/willswire/AFI-SWiM/issues">Report Bug</a>
     ·
-    <a href="https://github.com/willswire/AFISWM/issues">Request Feature</a>
+    <a href="https://github.com/willswire/AFI-SWiM/issues">Request Feature</a>
   </p>
 </p>
 
