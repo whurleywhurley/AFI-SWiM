@@ -54,7 +54,8 @@ function convertAFI(status, dataBuffer) {
     const worksheet = workbook.addWorksheet("AFI Export");
     worksheet.columns = [
     {header: 'Description', key: 'description', width: 70},
-    {header: 'Shall/Will/Must', key: 'shallwillmust', width: 30}
+    {header: 'Shall/Will/Must', key: 'shallwillmust', width: 30},
+    {header: 'Tier Level', key: 'tierlevel', width: 30}
     ];
 
     // Set up the description column from the PDF export
@@ -72,12 +73,26 @@ function convertAFI(status, dataBuffer) {
         }
     });
 
+    // Set up the Tier column by iterating over the rows, and then create the filter
+    const tier = worksheet.getColumn(3);
+    tier.eachCell(function(cell, rowNumber) {
+        cell.value = { formula:
+        '=CONCATENATE(IF(IFERROR(FIND("T-0",A' + rowNumber 
+        + '),0)>0,"T-0",""),IF(IFERROR(FIND("T-1",A' + rowNumber
+        + '),0)>0,"T-1",""),IF(IFERROR(FIND("T-2",A' + rowNumber
+        + '),0)>0,"T-2",""),IF(IFERROR(FIND("T-3",A' + rowNumber
+        + '),0)>0,"T-3",""))'
+        }
+    });
+
+
     // Insert the header row,, style, then freeze it
     worksheet.getColumn('description').header = "Description"
     worksheet.getColumn('shallwillmust').header = "Shall/Will/Must"
+    worksheet.getColumn('tierlevel').header = "Tier Level"
     worksheet.getRow(1).font = {bold: true};
     worksheet.views = [{state: 'frozen', xSplit: 0, ySplit: 1}];
-    worksheet.autoFilter = 'B1:B1';
+    worksheet.autoFilter = 'B1:C1';
 
     // return the workbook
     return workbook;
