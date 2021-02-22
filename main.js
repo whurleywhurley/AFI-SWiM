@@ -21,10 +21,6 @@ function createWindow () {
   // and remove the menu
   mainWindow.setResizable(false)
   mainWindow.removeMenu()
-
-
-  // Open the DevTools.
-  //mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -42,11 +38,29 @@ function convertAFI(status, dataBuffer) {
   console.log("Converting AFI to Excel...")
   pdf(dataBuffer)
   .then(function (data) {
-      result = data.text.replace(/\n[^\d+\.]/g, '')
-      result = result.split(/(\d\..*)\s/)
-      return result.filter(function (el) {
-          return el != '';
-      });
+
+    // clean the text by removing all line breaks before paragraph numberings
+    cleanedText = data.text.replace(/\n[^\d+\.]/g, '')
+
+    // deliminate the text by newline breaks
+    segmentedText = cleanedText.split(/\n/)
+
+    // find the first paragraph of the AFI
+    var found = false;
+    var index = 0;
+    while (!found) {
+        if (segmentedText[index].includes("1.1.  ")) {
+            found = true
+        } else {
+            index++;
+        }
+    }
+
+    // remove everything before paragraph 1.1. of the AFI
+    segmentedText.splice(0, index)
+
+    // pass off the result to the exceljs handler
+    return segmentedText
   })
   .then(result => {
     // Create our worksheet and set it up
@@ -84,7 +98,6 @@ function convertAFI(status, dataBuffer) {
         + '),0)>0,"T-3",""))'
         }
     });
-
 
     // Insert the header row,, style, then freeze it
     worksheet.getColumn('description').header = "Description"
