@@ -26,7 +26,7 @@
     "appId": "scripter.afi-swim",
     "win": {
       "target": [
-        "squirrel"
+        "portable"
       ]
     },
     "portable": {
