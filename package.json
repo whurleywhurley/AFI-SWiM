@@ -1,6 +1,10 @@
 {
   "name": "afi-swim",
   "productName": "AFI SWiM",
+  "repository": {
+    "url": "https://github.com/willswire/AFI-SWiM"
+  },
+  "license": "MIT",
   "description": "Produce an Excel workbook from an AFI by extracting shall, will, and must",
   "keywords": [],
   "main": "./main.js",
@@ -10,8 +14,9 @@
     "start": "electron ."
   },
   "dependencies": {
-    "pdf-parse": "*",
-    "exceljs": "*"
+    "electron-builder-squirrel-windows": "^22.10.5",
+    "exceljs": "*",
+    "pdf-parse": "*"
   },
   "devDependencies": {
     "electron": "^11.3.0"
@@ -21,7 +26,7 @@
     "appId": "scripter.afi-swim",
     "win": {
       "target": [
-        "portable"
+        "squirrel"
       ]
     },
     "portable": {
