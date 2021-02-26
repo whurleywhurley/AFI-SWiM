@@ -33,6 +33,8 @@ Scan and generate a Standards and Procedures Checklist from an Air Force Instruc
 <!-- CONTRIBUTING -->
 ## Contributing
 
+This is a downstream fork of willswire/AFI-SWiM. Submit requests at that repo.
+
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
@@ -53,7 +55,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@wills_wire](https://twitter.com/wills_wire)
+Original Author - [@wills_wire](https://twitter.com/wills_wire)
 
 
 
